@@ -1,0 +1,69 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+namespace Arvore { //Namespace para organizar o código relacionado à árvore
+    
+    struct Node { //Representação do nó da árvore
+        string nome; //Do arquivo ou pasta
+        string caminho; // (ex: "/home/usuario/arquivo.txt")
+        bool serPasta; //true para pasta e false para arquivo
+        long long tamanho = 0; // tamanho do arquivo ou soma do tamanho dos filhos
+        vector<Node*> filhos; //Vários filhos implicam em um vetor de filhos
+    };
+
+    // Função para liberar a memória alocada 
+    void liberarMemoria(Node* node) {
+        for (auto filho : node->filhos) {
+            liberarMemoria(filho);  //chama a função de forma recursiva para o filho
+        }
+        delete node; //Depois de passar pelos filhos deleta o nodo
+    }
+
+    // Função para exibir a estrutura da árvore de forma simples, ainda não exibe conforme o solicitado
+    void exibirSimples(const Node* node, int nivel = 0) {
+        // Imprime a indentação de acordo com o nível da árvore
+        for (int i = 0; i < nivel; ++i) cout << "  ";
+        // Exibe se é uma pasta ou arquivo e o nome
+        cout << (node->serPasta ? "[Pasta] " : "[Arquivo] ") << node->nome << endl;
+        // Exibe os filhos (subpastas ou arquivos dentro da pasta)
+        for (const auto& filho : node->filhos) {
+            exibirSimples(filho, nivel + 1);
+        }
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // Diretório inicial (passado via linha de comando ou usa o diretório atual)
+    string diretorioInicial = (argc > 1) ? argv[1] : ".";
+
+    cout << "Diretório inicial: " << diretorioInicial << endl;
+
+    using namespace Arvore; // Usando o namespace Arvore para facilitar a chamada das funções e estrutura
+
+    //Exemplo fixo
+
+    // Criando a raiz manualmente e suas informações
+    Node* raiz = new Node;
+    raiz->nome = "exemplo";
+    raiz->caminho = diretorioInicial;
+    raiz->serPasta = true;
+
+    // Criando um arquivo manualmente e inserindo na lista de filhos da raiz
+    Node* arquivo = new Node;
+    arquivo->nome = "arquivo.txt";
+    arquivo->caminho = diretorioInicial + "/arquivo.txt";
+    arquivo->serPasta = false;
+
+    raiz->filhos.push_back(arquivo);  // Adicionando o arquivo à raiz
+
+    // Exibir a estrutura da árvore
+    exibirSimples(raiz);
+
+    // Liberar a memória alocada
+    liberarMemoria(raiz);
+
+    return 0;
+}
