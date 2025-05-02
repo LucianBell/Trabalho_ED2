@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <unistd.h>
+#include <cstring>
 
 using namespace std;
 
@@ -33,37 +37,61 @@ namespace Arvore { //Namespace para organizar o código relacionado à árvore
             exibirSimples(filho, nivel + 1);
         }
     }
+    Node* construirArvore(const string& caminho){
+        Node* node = new Node;
+        node->caminho = caminho;
+
+        struct stat info;
+        if(stat(caminho.c_str(), &info) == -1){
+            perror(("Erro ao acessar: " + caminho).c_str());
+            delete node;
+            return nullptr;
+        }
+        node->serPasta = S_ISDIR(info.st_mode);
+        node->nome = caminho.substr(caminho.find_last_of("/")+1);
+
+        if(!node->serPasta){
+            node->tamanho = info.st_size;
+            return node;
+    }
+        DIR* dir = opendir(caminho.c_str());
+        if(!dir){
+            perror(("Erro ao abrir diretório: " + caminho).c_str());
+            delete node;
+            return nullptr;
+        }
+        struct dirent* entry;
+        while ((entry = readdir(dir)) != nullptr){
+            string nome = entry->d_name;
+            if (nome == "." || nome == "..") continue;
+
+            string novoCaminho = caminho + "/" + nome;
+
+            if (entry->d_type != DT_REG && entry->d_type != DT_DIR) continue;
+
+            Node* filho = construirArvore(novoCaminho);
+            if(filho){
+                node->filhos.push_back(filho);
+                node->tamanho += filho->tamanho;
+            }
+        }
+        closedir(dir);
+        return node;
+
+    }
 }
 
-int main(int argc, char* argv[]) {
-    // Diretório inicial (passado via linha de comando ou usa o diretório atual)
+int main(int argc, char* argv[]){
     string diretorioInicial = (argc > 1) ? argv[1] : ".";
 
     cout << "Diretório inicial: " << diretorioInicial << endl;
 
-    using namespace Arvore; // Usando o namespace Arvore para facilitar a chamada das funções e estrutura
+    using namespace Arvore;
 
-    //Exemplo fixo
-
-    // Criando a raiz manualmente e suas informações
-    Node* raiz = new Node;
-    raiz->nome = "exemplo";
-    raiz->caminho = diretorioInicial;
-    raiz->serPasta = true;
-
-    // Criando um arquivo manualmente e inserindo na lista de filhos da raiz
-    Node* arquivo = new Node;
-    arquivo->nome = "arquivo.txt";
-    arquivo->caminho = diretorioInicial + "/arquivo.txt";
-    arquivo->serPasta = false;
-
-    raiz->filhos.push_back(arquivo);  // Adicionando o arquivo à raiz
-
-    // Exibir a estrutura da árvore
-    exibirSimples(raiz);
-
-    // Liberar a memória alocada
-    liberarMemoria(raiz);
-
+    Node* raiz = construirArvore(diretorioInicial);
+    if(raiz){
+        exibirSimples(raiz);
+        liberarMemoria(raiz);
+    }
     return 0;
 }
