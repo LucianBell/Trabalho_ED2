@@ -25,18 +25,27 @@ namespace Arvore { //Namespace para organizar o código relacionado à árvore
         }
         delete node; //Depois de passar pelos filhos deleta o nodo
     }
-
-    // Função para exibir a estrutura da árvore de forma simples, ainda não exibe conforme o solicitado
+    // Função para exibir a estrutura da árvore com nome e tamanho
     void exibirSimples(const Node* node, int nivel = 0) {
         // Imprime a indentação de acordo com o nível da árvore
         for (int i = 0; i < nivel; ++i) cout << "  ";
-        // Exibe se é uma pasta ou arquivo e o nome
-        cout << (node->serPasta ? "[Pasta] " : "[Arquivo] ") << node->nome << endl;
+
+        // Exibe nome, tipo e tamanho
+        if (node->serPasta) {
+            cout << "[Pasta] " << node->nome 
+                << " (" << node->filhos.size() << " filhos, "
+                << node->tamanho << " bytes)" << endl;
+        } else {
+            cout << "[Arquivo] " << node->nome 
+                << " (" << node->tamanho << " bytes)" << endl;
+        }
+
         // Exibe os filhos (subpastas ou arquivos dentro da pasta)
         for (const auto& filho : node->filhos) {
             exibirSimples(filho, nivel + 1);
         }
     }
+
     Node* construirArvore(const string& caminho){
         Node* node = new Node;
         node->caminho = caminho;
