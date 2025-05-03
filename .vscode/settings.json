@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "commit01carlos": "cpp"
+        "commit01carlos": "cpp",
+        "iostream": "cpp"
     }
 }
