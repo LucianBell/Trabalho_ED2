@@ -1,6 +1,13 @@
 # Trabalho_ED2
 Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 
+# Como rodar o programa:
+## Compilação
+- Abra o terminal e execute o seguinte comando (considerando que estamos usando gcc):
+`
+ g++ main.cpp arvore/*.cpp utils/*.cpp -o programa.o
+`
+
 # Casos de teste
 - Listando alguns casos de teste do programa, separando-os por categoria.
 - Lógica da apresentação dos pontos:
@@ -39,16 +46,18 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 ## 🔍 Pesquisas
 
 ### 3.1 Maior Arquivo
-> :warning: **Erro encontrado quando dois arquivos tem o mesmo tamanho (apenas o último é listado)**
+> ~~:warning: **Erro encontrado quando dois arquivos tem o mesmo tamanho (apenas o último é listado)**~~
+> ✔ Resolvido
 
-- [ ] Encontrar e exibir o maior arquivo corretamente
-- [ ] Empate entre dois ou mais arquivos → listar todos
+- [x] Encontrar e exibir o maior arquivo corretamente
+- [x] Empate entre dois ou mais arquivos → listar todos
 
 ### 3.2 Arquivos com mais do que N bytes
-> :warning: **Ponto de melhora: podemos colocar uma mensagem personalizada quando N maior que todos**
+> ~~:warning: Ponto de melhora: podemos colocar uma mensagem personalizada quando N maior que todos~~
+> ✔ Resolvido
 
 - [x] N menor que todos → listar todos
-- [ ] N maior que todos → listar nenhum
+- [x] N maior que todos → listar nenhum
 - [x] N intermediário → listar arquivos corretos
 
 ### 3.3 Pasta com mais arquivos diretos
@@ -73,7 +82,7 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 ---
 
 ## 🚨 Robustez
-
+> ⚠️ **Erro ao inserir um valor não numérico no menu! Ao invés de entrada inválida, o programa encerra.**
 - [ ] Pastas/arquivos com espaços e caracteres especiais → funcionar normalmente
 - [ ] Arquivos grandes → mostrar tamanho corretamente
 - [ ] Muitas subpastas e profundidade → manter performance e indentação

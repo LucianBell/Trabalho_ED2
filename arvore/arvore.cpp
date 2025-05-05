@@ -87,12 +87,17 @@ void exibirSimples(const Node* node, int nivel) {
 }
 
 // Função auxiliar para buscar o maior arquivo recursivamente
-void buscarMaiorArquivoRecursivo(const Node* node, const Node*& maior) {
+void buscarMaiorArquivoRecursivo(const Node* node, std::vector<Node>& maior) {
     if (!node) return;
 
-    if (!node->serPasta && (!maior || node->tamanho > maior->tamanho)) {
-        maior = node;
+    if (!node->serPasta && (maior.empty() || node->tamanho > maior.front().tamanho)) {
+        maior.clear();
+        maior.push_back(*node);
+    } else if (!node->serPasta && (node->tamanho == maior.front().tamanho))
+    {
+        maior.push_back(*node);
     }
+    
 
     for (const auto& filho : node->filhos) {
         buscarMaiorArquivoRecursivo(filho, maior);
@@ -101,42 +106,60 @@ void buscarMaiorArquivoRecursivo(const Node* node, const Node*& maior) {
 
 // Busca e exibe o maior arquivo da árvore
 void buscarMaiorArquivo(const Node* raiz) {
+    std::vector<Node> maiores;
     const Node* maior = nullptr;
-    buscarMaiorArquivoRecursivo(raiz, maior);
+    buscarMaiorArquivoRecursivo(raiz, maiores);
 
-    if (maior) {
-        std::cout << "Maior arquivo encontrado\n";
-        std::cout << "Nome: " << maior->nome << "\n";
-        std::cout << "Caminho: " << maior->caminho << "\n";
-        std::cout << "Tamanho: " << maior->tamanho << " bytes\n";
+    if (!maiores.empty()) {
+        if (maiores.size() > 1)
+        {
+            std::cout << "\nMais de um arquivo possuem o mesmo tamanho!\n";
+            std::cout << "Maiores arquivos encontrados:\n\n";
+        } else {
+            std::cout << "\nMaior arquivo encontrado\n";
+        }
+        
+        for (Node i : maiores)
+        {
+            std::cout << "Nome: " << i.nome << "\n";
+            std::cout << "Caminho: " << i.caminho << "\n";
+            std::cout << "Tamanho: " << i.tamanho << " bytes\n";
+            std::cout << "\n";
+        }
     } else {
         std::cout << "Nenhum arquivo encontrado.\n";
     }
 }
 
 // Busca arquivos maiores que um determinado tamanho
-void buscarArquivosMaioresQueRecursivo(const Node* node, long long n) {
+void buscarArquivosMaioresQueRecursivo(const Node* node, long long n, int &contador) {
     if (!node) return;
 
     if (!node->serPasta && node->tamanho > n) {
+        contador++;
         std::cout << "Arquivo: " << node->nome << "\n";
         std::cout << "Caminho: " << node->caminho << "\n";
         std::cout << "Tamanho: " << node->tamanho << " bytes.\n\n";
     }
 
     for (const auto& filho : node->filhos) {
-        buscarArquivosMaioresQueRecursivo(filho, n);
+        buscarArquivosMaioresQueRecursivo(filho, n, contador);
     }
 }
 
 void buscarArquivosMaioresQue(const Node* raiz) {
     long long n;
+    int count = 0;
     std::cout << "Digite o valor N (bytes): ";
     std::cin >> n;
     std::cin.ignore();
 
     std::cout << "\nArquivos maiores que " << n << " bytes:\n";
-    buscarArquivosMaioresQueRecursivo(raiz, n);
+    buscarArquivosMaioresQueRecursivo(raiz, n, count);
+    if (count == 0)
+    {
+        std::cout << "Nenhum arquivo maior que " << n << " bytes foi encontrado." << std::endl;
+    }
 }
 
 // Função auxiliar para buscar a pasta com mais arquivos diretos
