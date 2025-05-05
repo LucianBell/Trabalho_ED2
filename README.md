@@ -19,19 +19,20 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 ---
 
 ## 🌳 Exibir Árvore Completa
+> :warning: **Ponto de melhora: ordenar melhor os itens e pastas, fazendo por ordem alfabética.**
 
-- [ ] Exibir arquivos com nome e tamanho corretos
+- [x] Exibir arquivos com nome e tamanho corretos
 - [ ] Exibir pastas com nome, número de filhos diretos e tamanho acumulado corretos
-- [ ] Exibir subpastas com indentação adequada
-- [ ] Exibir pastas vazias corretamente (0 filhos)
+- [x] Exibir subpastas com indentação adequada
+- [x] Exibir pastas vazias corretamente (0 filhos)
 
 ---
 
 ## 🌐 Exportar Árvore para HTML
 
-- [ ] Exportar árvore pequena → HTML com indentação correta
-- [ ] Exportar árvore grande → HTML mantendo estrutura correta
-- [ ] Exportar árvore com pastas vazias → HTML mostra as pastas vazias
+- [x] Exportar árvore pequena → HTML com indentação correta
+- [x] Exportar árvore grande → HTML mantendo estrutura correta
+- [x] Exportar árvore com pastas vazias → HTML mostra as pastas vazias
 
 ---
 
@@ -44,12 +45,15 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 - [ ] Empate entre dois ou mais arquivos → listar todos
 
 ### 3.2 Arquivos com mais do que N bytes
+> :warning: **Ponto de melhora: podemos colocar uma mensagem personalizada quando N maior que todos**
 
-- [ ] N menor que todos → listar todos
+- [x] N menor que todos → listar todos
 - [ ] N maior que todos → listar nenhum
-- [ ] N intermediário → listar arquivos corretos
+- [x] N intermediário → listar arquivos corretos
 
 ### 3.3 Pasta com mais arquivos diretos
+> ¿: **Será que devemos considerar a pasta buscada/raíz junto nessa operação?**
+> ¿: **O que fazer quando temos duas pastas com a mesma quantidade de arquivos/pastas?**
 
 - [ ] Identificar a pasta com mais arquivos diretos corretamente
 - [ ] Empate entre pastas → escolher ou listar qualquer uma de forma estável
@@ -62,9 +66,9 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 
 ### 3.5 Pastas vazias
 
-- [ ] Pastas sem arquivos e subpastas → listar como vazias
-- [ ] Pastas com arquivos ocultos → considerar como não vazias
-- [ ] Pastas com subpastas → listar vazias corretamente se aplicável
+- [x] Pastas sem arquivos e subpastas → listar como vazias
+- [x] Pastas com arquivos ocultos → considerar como não vazias
+- [x] Pastas com subpastas → listar vazias corretamente se aplicável
 
 ---
 
