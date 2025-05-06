@@ -68,10 +68,11 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 - [ ] Empate entre pastas → escolher ou listar qualquer uma de forma estável
 
 ### 3.4 Arquivos por extensão
-
-- [ ] Buscar por `.txt` → listar arquivos corretos
-- [ ] Buscar por extensão inexistente → não listar nada
-- [ ] Buscar com e sem ponto (`txt` e `.txt`) → funcionar em ambos os casos
+> ~~:warning: **Ponto de melhora: Criar uma saída padrão para quando nenhum arquivo com aquela extensão é encontrado**~~
+> ✔ Resolvido
+- [x] Buscar por `.txt` → listar arquivos corretos
+- [x] Buscar por extensão inexistente → não listar nada
+- [x] Buscar com e sem ponto (`txt` e `.txt`) → funcionar em ambos os casos
 
 ### 3.5 Pastas vazias
 

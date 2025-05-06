@@ -199,15 +199,16 @@ bool temExtensao(const std::string& nome, const std::string& extensao) {
 }
 
 // Busca arquivos com determinada extensão
-void buscarArquivosPorExtensaoRecursivo(const Node* node, const std::string& extensao) {
+void buscarArquivosPorExtensaoRecursivo(const Node* node, const std::string& extensao, bool& encontrou) {
     if (!node) return;
 
     if (!node->serPasta && temExtensao(node->nome, extensao)) {
         std::cout << "Arquivo: " << node->nome << " - Caminho: " << node->caminho << "\n";
+        encontrou = true;
     }
 
     for (const auto& filho : node->filhos) {
-        buscarArquivosPorExtensaoRecursivo(filho, extensao);
+        buscarArquivosPorExtensaoRecursivo(filho, extensao, encontrou);
     }
 }
 
@@ -219,7 +220,13 @@ void buscarArquivosPorExtensao(const Node* raiz) {
     std::string extensao = (entrada[0] == '.') ? entrada : "." + entrada;
 
     std::cout << "Arquivos com extensão '" << extensao << "':\n";
-    buscarArquivosPorExtensaoRecursivo(raiz, extensao);
+
+    bool encontrou = false;
+    buscarArquivosPorExtensaoRecursivo(raiz, extensao, encontrou);
+
+    if(!encontrou){
+        std::cout << "Nenhum arquivo encontrado com a extensão '" << extensao << "'.\n";
+    }
 }
 
 // Lista todas as pastas vazias na árvore
