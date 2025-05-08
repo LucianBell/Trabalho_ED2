@@ -29,7 +29,7 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 > :warning: **Ponto de melhora: ordenar melhor os itens e pastas, fazendo por ordem alfabética.**
 
 - [x] Exibir arquivos com nome e tamanho corretos
-- [ ] Exibir pastas com nome, número de filhos diretos e tamanho acumulado corretos
+- [x] Exibir pastas com nome, número de filhos diretos e tamanho acumulado corretos
 - [x] Exibir subpastas com indentação adequada
 - [x] Exibir pastas vazias corretamente (0 filhos)
 
@@ -64,8 +64,8 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 > ¿: **Será que devemos considerar a pasta buscada/raíz junto nessa operação?**
 > ¿: **O que fazer quando temos duas pastas com a mesma quantidade de arquivos/pastas?**
 
-- [ ] Identificar a pasta com mais arquivos diretos corretamente
-- [ ] Empate entre pastas → escolher ou listar qualquer uma de forma estável
+- [x] Identificar a pasta com mais arquivos diretos corretamente
+- [x] Empate entre pastas → escolher ou listar qualquer uma de forma estável
 
 ### 3.4 Arquivos por extensão
 > ~~:warning: **Ponto de melhora: Criar uma saída padrão para quando nenhum arquivo com aquela extensão é encontrado**~~
