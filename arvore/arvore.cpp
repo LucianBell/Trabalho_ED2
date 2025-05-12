@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <cstring>
 #include <fstream>
-
+#include <algorithm>
 namespace Arvore {
 
 // Função recursiva que constrói a árvore a partir do diretório inicial
@@ -81,10 +81,17 @@ void exibirSimples(const Node* node, int nivel) {
                   << " (" << node->tamanho << " bytes)\n";
     }
 
-    for (const auto& filho : node->filhos) {
+    // Ordena os filhos em ordem alfabética
+    std::vector<const Node*> ordenados(node->filhos.begin(), node->filhos.end());
+    std::sort(ordenados.begin(), ordenados.end(), [](const Node* a, const Node* b) {
+        return a->nome < b->nome;
+    });
+
+    for (const auto& filho : ordenados) {
         exibirSimples(filho, nivel + 1);
     }
 }
+
 
 // Função auxiliar para buscar o maior arquivo recursivamente
 void buscarMaiorArquivoRecursivo(const Node* node, std::vector<Node>& maior) {

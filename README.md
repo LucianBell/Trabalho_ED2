@@ -26,7 +26,7 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 ---
 
 ## 🌳 Exibir Árvore Completa
-> :warning: **Ponto de melhora: ordenar melhor os itens e pastas, fazendo por ordem alfabética.**
+> ~~:warning: **Ponto de melhora: ordenar melhor os itens e pastas, fazendo por ordem alfabética.**~~
 
 - [x] Exibir arquivos com nome e tamanho corretos
 - [x] Exibir pastas com nome, número de filhos diretos e tamanho acumulado corretos
