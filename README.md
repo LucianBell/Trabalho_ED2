@@ -85,10 +85,10 @@ Trabalho de estrutura de dados II do Mestre Jedi Dr. Brusso
 ## 🚨 Robustez
 > ⚠️ **Erro ao inserir um valor não numérico no menu! Ao invés de entrada inválida, o programa encerra.**
 >:warning: **Erro ao inserir ponto flutuante no menu! Pode entrar em alguma opção até utilizar o valor após a vírgula.**
-- [ ] Pastas/arquivos com espaços e caracteres especiais → funcionar normalmente
-- [ ] Arquivos grandes → mostrar tamanho corretamente
-- [ ] Muitas subpastas e profundidade → manter performance e indentação
-- [ ] Pastas com permissões restritas → não travar o programa
+- [x] Pastas/arquivos com espaços e caracteres especiais → funcionar normalmente
+- [x] Arquivos grandes → mostrar tamanho corretamente
+- [x] Muitas subpastas e profundidade → manter performance e indentação
+- [x] Pastas com permissões restritas → não travar o programa
 
 ---
 
